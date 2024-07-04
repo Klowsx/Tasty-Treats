@@ -1,3 +1,4 @@
+//Madelaine Arosemena, ALvaro Frago, Osiris Mateo, Javier Hernandez
 package com.example.semestral
 
 import android.content.Intent
