@@ -25,7 +25,7 @@ class SignIn : AppCompatActivity() {
     }
 
     private lateinit var auth: FirebaseAuth
-
+    private lateinit var button: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class SignIn : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
 
         auth = FirebaseAuth.getInstance()
-
+         button= findViewById(R.id.login)
         val editText1 = findViewById<EditText>(R.id.editTextTextEmailAddress)
 
         editText1.setHintTextColor(resources.getColor(R.color.grisClaro)) // Cambia el color del hint si es necesario
@@ -43,13 +43,17 @@ class SignIn : AppCompatActivity() {
 
         val currentUser = auth.currentUser
 
+        button.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         if (currentUser != null) {
             // The user is already signed in, navigate to MainActivity
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish() // finish the current activity to prevent the user from coming back to the SignInActivity using the back button
         }
-
 
 
 

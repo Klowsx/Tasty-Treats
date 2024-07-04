@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/fondomain">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -37,7 +37,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:background="@color/fondomain"
+            android:backgroundTint="@color/fondomain"
+            >
 
             <!-- CardView for first item -->
             <androidx.cardview.widget.CardView
@@ -54,14 +57,14 @@
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="110dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/login" />
 
                     <TextView
                         android:id="@+id/first_item_title"
                         android:layout_width="wrap_content"
-                        android:layout_height="29dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/imageView2"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="8dp"
@@ -80,10 +83,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="26dp"
-                        android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:text="(43)"
                         android:textColor="@color/grisClaro"
@@ -103,24 +104,43 @@
                 android:textStyle="bold" />
 
             <!-- ViewFlipper for images -->
+
+            <!-- ConstraintLayout for special recipe -->
             <ViewFlipper
                 android:id="@+id/viewFlipper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:autoStart="true"
-                android:flipInterval="3000"
-                android:layout_marginBottom="16dp">
+                android:flipInterval="5000"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:inAnimation="@android:anim/slide_in_left"
+                android:outAnimation="@android:anim/slide_out_right">
 
                 <!-- Placeholder for flipper items -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="250dp"
+                    android:layout_height="165dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="8dp"
+                    android:layout_gravity="center"
+                    app:cardElevation="4dp">
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    android:layout_width="250dp"
+                    android:layout_height="165dp"
+                    android:layout_gravity="center"
+
+                    android:layout_marginStart="-30dp"
+                    android:layout_marginEnd="-30dp"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="match_parent"
-                        android:layout_height="84dp"
-                        android:scaleType="centerCrop"
+                        android:layout_height="100dp"
+                        android:scaleType="centerInside"
                         android:src="@drawable/logosem" />
 
                     <TextView
@@ -128,7 +148,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imageView3"
-                        android:layout_margin="8dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
                         android:text="Vegetables"
                         android:textColor="@color/textomorado"
                         android:textSize="18sp"
@@ -138,23 +163,39 @@
                         android:id="@+id/second_item_subtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/second_item_title"
+                        android:layout_below="@+id/second_item_title"
+                        android:layout_alignParentStart="true"
                         android:layout_margin="8dp"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
                         android:text="(43)"
                         android:textColor="@color/grisClaro"
                         android:textSize="14sp" />
                 </RelativeLayout>
-
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="250dp"
+                    android:layout_height="165dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    android:layout_width="250dp"
+                    android:layout_height="165dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="-30dp"
+                    android:layout_marginEnd="-30dp"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="match_parent"
                         android:layout_height="84dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logosem" />
+                        android:scaleType="centerInside"
+                        android:src="@drawable/home" />
 
                     <TextView
                         android:id="@+id/second_item_title2"
@@ -162,7 +203,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imageView4"
                         android:layout_margin="8dp"
-                        android:text="Vegetables"
+                        android:text="Fruits"
                         android:textColor="@color/textomorado"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -171,60 +212,89 @@
                         android:id="@+id/second_item_subtitle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/second_item_title2"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
                         android:layout_margin="8dp"
-                        android:text="(43)"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="(22)"
                         android:textColor="@color/grisClaro"
                         android:textSize="14sp" />
-                </RelativeLayout>
 
+                </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="250dp"
+                    android:layout_height="165dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    android:layout_width="250dp"
+                    android:layout_height="165dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="-30dp"
+                    android:layout_marginEnd="-30dp"
+                    android:background="@color/white">
 
                     <ImageView
                         android:id="@+id/imageView5"
                         android:layout_width="match_parent"
                         android:layout_height="84dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logosem" />
+                        
+                        android:scaleType="centerInside"
+                        android:src="@drawable/google" />
 
                     <TextView
-                        android:id="@+id/third_item_title"
+                        android:id="@+id/second_item_title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/imageView5"
                         android:layout_margin="8dp"
-                        android:text="Special Recipe"
+                        android:text="Meats"
                         android:textColor="@color/textomorado"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/third_item_subtitle"
+                        android:id="@+id/second_item_subtitle3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/third_item_title"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
                         android:layout_margin="8dp"
-                        android:text="(18)"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="(55)"
                         android:textColor="@color/grisClaro"
                         android:textSize="14sp" />
                 </RelativeLayout>
-
+                </androidx.cardview.widget.CardView>
             </ViewFlipper>
-
-            <!-- ConstraintLayout for special recipe -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/special_recipe_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:background="@color/white">
 
                 <ImageView
                     android:id="@+id/fourth_item_image"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:scaleType="centerCrop"
+                    android:scaleType="centerInside"
                     android:src="@drawable/logosem"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -252,9 +322,11 @@
                     android:text="(18)"
                     android:textColor="@color/grisClaro"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fourth_item_title" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 
@@ -265,8 +337,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="-1dp"
+        android:layout_marginBottom="0dp"
         android:background="@color/white"
+        app:itemIconTint="@color/nav_option_selected"
+        app:itemTextColor="@color/nav_option_selected"
         app:menu="@menu/bottom_navigation_menu" />
 
 </RelativeLayout>
