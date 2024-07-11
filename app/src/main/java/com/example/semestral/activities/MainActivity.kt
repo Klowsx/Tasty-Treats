@@ -1,17 +1,20 @@
 //Madelaine Arosemena, ALvaro Frago, Osiris Mateo, Javier Hernandez
-package com.example.semestral
+package com.example.semestral.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.ViewFlipper
 import androidx.appcompat.app.AppCompatActivity
+import com.example.semestral.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
