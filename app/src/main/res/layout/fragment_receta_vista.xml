@@ -16,6 +16,7 @@
             android:orientation="vertical">
 
             <TextView
+<<<<<<< Updated upstream
                 android:id="@+id/titleComida"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -26,6 +27,10 @@
             <TextView
                 android:id="@+id/titleCategoria"
                 android:layout_width="match_parent"
+=======
+                android:id="@+id/category_label"
+                android:layout_width="wrap_content"
+>>>>>>> Stashed changes
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp" />
@@ -34,6 +39,30 @@
                 android:id="@+id/titleOrigen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+<<<<<<< Updated upstream
+=======
+                android:layout_marginTop="4dp"
+                android:text="Lettuce is an annual plant of the daisy family, Asteraceae. It is most often grown as a leaf vegetable, but sometimes for its stem and seeds. Lettuce is most often used for salads, although it is also seen in other kinds of food, such as soups, sandwiches and wraps; it can also be grilled."
+                android:textColor="@color/grisClaro"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/lettuce_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Boston Lettuce"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/steps_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Pasos"
+                android:textColor="@color/black"
+>>>>>>> Stashed changes
                 android:textSize="18sp"
                 android:layout_marginBottom="16dp" />
 

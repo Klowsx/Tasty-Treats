@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "331870822118",
+    "project_id": "semestral-754fb",
+    "storage_bucket": "semestral-754fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331870822118:android:afe18960ebaf1d56d8e527",
+        "android_client_info": {
+          "package_name": "com.example.semestral"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331870822118-gl0unqahphfdoae1cvf1n2jsf635a2s4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.semestral",
+            "certificate_hash": "8a50373b85156ffde5b256d6b977826ca4e25ffd"
+          }
+        },
+        {
+          "client_id": "331870822118-g77hckr348qoajriv7fpe6vm1h08ajb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVZjgjE0DhIFnBrbQ6utZDcfaq71asSXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331870822118-g77hckr348qoajriv7fpe6vm1h08ajb4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
