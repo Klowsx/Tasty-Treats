@@ -3,7 +3,7 @@ package com.example.semestral.models
 data class Comida(
     val idMeal: String,
     val strMeal: String,
-    val strDrinkAlternate: String,
+    val strDrinkAlternate: String?,
     val strCategory: String,
     val strArea: String,
     val strInstructions: String,
@@ -53,10 +53,8 @@ data class Comida(
     val strImageSource: String?,
     val strCreativeCommonsConfirmed: String?,
     val dateModified: String?
-
-
 )
 
 data class ComidaResponse(
-    val comidas: List<Comida>
+    val meals: List<Comida>?
 )

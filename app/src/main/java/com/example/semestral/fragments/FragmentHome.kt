@@ -10,10 +10,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ViewFlipper
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.semestral.R
 import com.example.semestral.conexion.RetrofitClient
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -43,38 +43,28 @@ class FragmentHome : Fragment() {
         viewFlipper.outAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.out_to_left)
 
         obtenerRecetaRandom()
+
         // Return the inflated view
         return view
     }
 
     private fun obtenerRecetaRandom() {
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch {
             try {
-                val response = RetrofitClient.api.obtenerRandom()
-                withContext(Dispatchers.Main) {
-                    if (response.comidas.isNullOrEmpty()) {
-                        Log.d("FragmentHome", "La lista de comidas es nula o vacía.")
-                        // Manejar el caso cuando no hay comidas disponibles
-                    } else {
-                        val comida = response.comidas.firstOrNull()
-                        comida?.let {
-                            Log.d("FragmentHome", "Receta aleatoria obtenida: ${it.strMeal}")
-                            Log.d("FragmentHome", "ID: ${it.idMeal}")
-                            Log.d("FragmentHome", "Imagen: ${it.strMealThumb}")
-                            tituloRecetaRandom.text = "Receta aleatoria"
-                            nombreRecetaRandom.text = it.strMeal
-                            Glide.with(requireContext()).load(it.strMealThumb).into(imgRecetaRandom)
-                        }
-                    }
+                val comidaResponse = withContext(Dispatchers.IO) {
+                    RetrofitClient.api.obtenerRandom()
                 }
+                comidaResponse.meals?.firstOrNull()?.let { comida ->
+                    Log.d("FragmentHome", "Receta aleatoria: ${comida.strMeal}")
+                    Log.d("FragmentHome", "ID: ${comida.idMeal}")
+                    Log.d("FragmentHome", "Imagen: ${comida.strMealThumb}")
+                    tituloRecetaRandom.text = "Receta aleatoria"
+                    nombreRecetaRandom.text = comida.strMeal
+                    Glide.with(requireContext()).load(comida.strMealThumb).into(imgRecetaRandom)
+                } ?: Log.d("FragmentHome", "La lista de meals está vacía o nula.")
             } catch (e: Exception) {
-                Log.e("FragmentHome", "Error al obtener receta aleatoria: ${e.message}", e)
-                withContext(Dispatchers.Main) {
-                    // Manejar el error de manera apropiada, por ejemplo, mostrar un mensaje al usuario
-                }
+                Log.e("FragmentHome", "Error en la llamada: ${e.message}")
             }
         }
     }
-
-
 }
