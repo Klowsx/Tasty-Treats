@@ -10,10 +10,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ViewFlipper
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.semestral.R
 import com.example.semestral.conexion.RetrofitClient
+import com.example.semestral.models.Comida
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -24,6 +26,8 @@ class FragmentHome : Fragment() {
     private lateinit var imgRecetaRandom: ImageView
     private lateinit var tituloRecetaRandom: TextView
     private lateinit var nombreRecetaRandom: TextView
+    private var comida: Comida? = null
+    private lateinit var idMeal: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +48,27 @@ class FragmentHome : Fragment() {
 
         obtenerRecetaRandom()
 
+        imgRecetaRandom.setOnClickListener {
+            Log.d("FragmentHome", "Imagen de receta random clickeada")
+            Log.d("AAAA","ID Guardado: ${idMeal}")
+            idMeal?.let { idMeal ->
+                val args = Bundle().apply {
+                    putString("idMeal", idMeal)
+                }
+                val recetaVistaFragment = RecetaVista().apply {
+                    arguments = args
+                }
+                parentFragmentManager.commit {
+                    replace(R.id.fragment_container, recetaVistaFragment)
+                    addToBackStack(null)
+                    Log.d("FragmentHome", "Reemplazando fragmento por RecetaVista")
+                }
+            }
+        }
+
+
+
+
         // Return the inflated view
         return view
     }
@@ -58,6 +83,8 @@ class FragmentHome : Fragment() {
                     Log.d("FragmentHome", "Receta aleatoria: ${comida.strMeal}")
                     Log.d("FragmentHome", "ID: ${comida.idMeal}")
                     Log.d("FragmentHome", "Imagen: ${comida.strMealThumb}")
+                    idMeal = comida.idMeal
+
                     tituloRecetaRandom.text = "Receta aleatoria"
                     nombreRecetaRandom.text = comida.strMeal
                     Glide.with(requireContext()).load(comida.strMealThumb).into(imgRecetaRandom)

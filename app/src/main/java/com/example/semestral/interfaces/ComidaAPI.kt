@@ -5,6 +5,7 @@ import com.example.semestral.models.Comida
 import com.example.semestral.models.ComidaResponse
 
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ComidaAPI {
 
@@ -15,5 +16,7 @@ interface ComidaAPI {
     @GET("random.php")
     suspend fun obtenerRandom(): ComidaResponse
 
+    @GET("lookup.php")
+    suspend fun obtenerComidaPorId(@Query("i") id: String): ComidaResponse
 
 }

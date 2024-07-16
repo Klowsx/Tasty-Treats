@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Últimas recetas"
+                android:text="Ingredientes populares"
                 android:textColor="#A0522D"
                 android:textSize="18sp"
                 android:textStyle="bold" />

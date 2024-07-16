@@ -2,18 +2,12 @@
 package com.example.semestral.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.example.semestral.R
-import com.example.semestral.interfaces.ComidaAPI
-import com.example.semestral.conexion.RetrofitClient
 import com.example.semestral.fragments.FragmentHome
+import com.example.semestral.fragments.RecetaVista
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity(){
 
@@ -35,7 +29,7 @@ class MainActivity : AppCompatActivity(){
                     true
                 }
                 R.id.nav_profile -> {
-                    replaceFragment(FragmentHome())
+                    replaceFragment(RecetaVista())
                     true
                 }
                 else -> false
