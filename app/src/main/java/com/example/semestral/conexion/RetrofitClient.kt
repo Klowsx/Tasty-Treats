@@ -1,5 +1,6 @@
-package com.example.semestral.conexion;
+package com.example.semestral.conexion
 
+import com.example.semestral.interfaces.ComidaAPI
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -12,5 +13,7 @@ object RetrofitClient {
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
+
+    val api: ComidaAPI = retrofit.create(ComidaAPI::class.java)
 }
 

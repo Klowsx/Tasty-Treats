@@ -34,6 +34,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+        //noinspection DataBindingWithoutKapt
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -44,23 +49,28 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation (platform("com.google.firebase:firebase-bom:31.5.0"))
+    implementation (platform(libs.firebase.bom))
 
-    implementation ("com.google.android.gms:play-services-auth:20.5.0")
+    implementation (libs.play.services.auth)
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation ("com.jakewharton.retrofit:retrofit2-kotlinx-coroutines-adapter:0.9.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
+    implementation(libs.retrofit)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.retrofit2.kotlin.coroutines.adapter)
 
     // Gson
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation(libs.converter.gson)
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.navigation.fragment.ktx)
+    implementation (libs.androidx.navigation.ui.ktx)
 }
