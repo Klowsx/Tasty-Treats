@@ -4,12 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.semestral.R
-import com.example.semestral.interfaces.ComidaAPI
-import com.example.semestral.conexion.RetrofitClient
 import com.example.semestral.fragments.FragmentCategoriasList
 import com.example.semestral.fragments.FragmentHome
 import com.example.semestral.fragments.ProfileFragment
-import com.example.semestral.fragments.RecetaVista
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -33,11 +30,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     replaceFragment(ProfileFragment())
-                    replaceFragment(FragmentCategoriasList())
-                    true
-                }
-                R.id.nav_profile -> {
-                    replaceFragment(FragmentCategoriasList())
                     true
                 }
                 else -> false
@@ -61,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             replaceFragment(FragmentHome())
         }
         // Set default fragment on start
-        replaceFragment(FragmentCategoriasList())
+        replaceFragment(FragmentHome())
     }
 
     private fun replaceFragment(fragment: Fragment) {

@@ -61,7 +61,11 @@
                 android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_search_view" />
+                android:background="@drawable/rounded_search_view"
+                android:iconifiedByDefault="false"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textColor="@android:color/black"/>
 
             <Space
                 android:layout_width="match_parent"

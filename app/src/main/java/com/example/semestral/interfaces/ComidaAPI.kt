@@ -19,4 +19,8 @@ interface ComidaAPI {
     @GET("lookup.php")
     suspend fun obtenerComidaPorId(@Query("i") id: String): ComidaResponse
 
+    @GET("search.php")
+    suspend fun  searchRecipes(@Query("s")query: String): ComidaResponse
+
+
 }
