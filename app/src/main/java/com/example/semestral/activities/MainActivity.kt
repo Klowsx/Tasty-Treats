@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.semestral.R
 import com.example.semestral.fragments.FragmentHome
+import com.example.semestral.fragments.ProfileFragment
 import com.example.semestral.fragments.RecetaVista
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -25,11 +26,11 @@ class MainActivity : AppCompatActivity(){
                     true
                 }
                 R.id.nav_search -> {
-                    replaceFragment(FragmentHome())
+                    replaceFragment(RecetaVista())
                     true
                 }
                 R.id.nav_profile -> {
-                    replaceFragment(RecetaVista())
+                    replaceFragment(ProfileFragment())
                     true
                 }
                 else -> false

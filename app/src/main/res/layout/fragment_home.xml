@@ -139,7 +139,7 @@
                             android:id="@+id/imageView3"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
-                            android:scaleType="centerInside"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/logosem" />
 
                         <TextView
@@ -298,8 +298,7 @@
                         android:id="@+id/imgRecetaRandom"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/logosem"
+                        android:scaleType="centerCrop"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
