@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.semestral.R
+import com.example.semestral.interfaces.ComidaAPI
+import com.example.semestral.conexion.RetrofitClient
+import com.example.semestral.fragments.FragmentCategoriasList
 import com.example.semestral.fragments.FragmentHome
 import com.example.semestral.fragments.ProfileFragment
 import com.example.semestral.fragments.RecetaVista
@@ -25,11 +28,16 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_search -> {
-                    replaceFragment(RecetaVista())
+                    replaceFragment(FragmentCategoriasList())
                     true
                 }
                 R.id.nav_profile -> {
                     replaceFragment(ProfileFragment())
+                    replaceFragment(FragmentCategoriasList())
+                    true
+                }
+                R.id.nav_profile -> {
+                    replaceFragment(FragmentCategoriasList())
                     true
                 }
                 else -> false
@@ -52,6 +60,8 @@ class MainActivity : AppCompatActivity() {
             // Set default fragment on start
             replaceFragment(FragmentHome())
         }
+        // Set default fragment on start
+        replaceFragment(FragmentCategoriasList())
     }
 
     private fun replaceFragment(fragment: Fragment) {

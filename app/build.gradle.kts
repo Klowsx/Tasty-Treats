@@ -63,7 +63,10 @@ dependencies {
 
     implementation (platform(libs.firebase.bom))
 
+
     implementation (libs.play.services.auth)
+
+
 
     // Retrofit
     implementation(libs.retrofit)
@@ -80,4 +83,9 @@ dependencies {
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
+
+    // Picasso
+// Picasso
+    implementation("com.squareup.picasso:picasso:2.71828")
+
 }
