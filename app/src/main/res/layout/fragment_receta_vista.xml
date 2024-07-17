@@ -1,94 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/fondomain">
 
-    <ScrollView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/back_button"
-        android:layout_below="@id/imgDetalles"
-        android:padding="16dp">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="202dp"
+        android:background="@color/fondomain"
+        app:cardCornerRadius="16dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <ScrollView
+            android:id="@+id/scrollView4"
+            android:layout_width="395dp"
+            android:layout_height="match_parent"
+            android:background="@color/fondomain"
+            android:padding="16dp">
 
-            <TextView
-                android:id="@+id/titleComida"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp" />
+                android:background="@color/fondomain"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/titleCategoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
 
-            <TextView
-                android:id="@+id/titleOrigen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginBottom="16dp" />
+                <TextView
+                    android:id="@+id/titleComida"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/labelIngredientes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingredientes:"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                <TextView
+                    android:id="@+id/titleCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="#38A03C"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/listaIngredientes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:lineSpacingMultiplier="1.2"
-                android:layout_marginBottom="16dp" />
+                <TextView
+                    android:id="@+id/titleOrigen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/labelPasos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pasos:"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                <TextView
+                    android:id="@+id/labelIngredientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Ingredientes:"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/listaPasos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:lineSpacingMultiplier="1.2"
-                android:layout_marginBottom="16dp" />
+                <TextView
+                    android:id="@+id/listaIngredientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:textColor="#494949"
+                    android:textSize="16sp" />
 
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/labelPasos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Pasos:"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/listaPasos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:textColor="#494949"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
 
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_width="57dp"
+        android:layout_height="54dp"
+        android:layout_above="@+id/cardView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="327dp"
+        android:layout_marginBottom="124dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_back_arrow" />
+        android:src="@drawable/ic_back_arrow"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/imgDetalles"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="214dp"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
         android:scaleType="centerCrop" />
 
 </RelativeLayout>

@@ -13,4 +13,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="textomorado">#2D0C57</color>
+    <color name="colorTitulos">#67604B</color>
+    <color name="colorSecundario">#A0936E</color>
+
 </resources>
