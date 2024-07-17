@@ -9,11 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.semestral.R
-<<<<<<< Updated upstream
 import com.example.semestral.activities.SignIn
-=======
-import com.example.semestral.SignIn
->>>>>>> Stashed changes
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -47,9 +43,12 @@ class ProfileFragment : Fragment() {
         val auth = Firebase.auth
         val user = auth.currentUser
 
+
+
+
         if (user != null) {
-            val userName = user.displayName ?: getUserNameFromEmail(user.email)
-            textView.text = userName
+            val userName = user.displayName
+            textView.text = "$userName"
         }
 
         val signOutButton = view.findViewById<Button>(R.id.logout_button)
@@ -60,9 +59,7 @@ class ProfileFragment : Fragment() {
         return view
     }
 
-    private fun getUserNameFromEmail(email: String?): String {
-        return email?.substringBefore('@') ?: "Unknown"
-    }
+
 
     private fun signOutAndStartSignInActivity() {
         mAuth.signOut()

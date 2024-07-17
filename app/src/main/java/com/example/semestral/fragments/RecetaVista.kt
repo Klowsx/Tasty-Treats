@@ -9,7 +9,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-<<<<<<< Updated upstream
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.semestral.R
@@ -18,9 +17,6 @@ import com.example.semestral.models.Comida
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-=======
-import com.example.semestral.R
->>>>>>> Stashed changes
 
 class RecetaVista : Fragment() {
     lateinit var imgDetalles: ImageView
@@ -41,7 +37,6 @@ class RecetaVista : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-<<<<<<< Updated upstream
         imgDetalles = view.findViewById(R.id.imgDetalles)
         titleComida = view.findViewById(R.id.titleComida)
         titleCategoria = view.findViewById(R.id.titleCategoria)
@@ -161,8 +156,5 @@ class RecetaVista : Fragment() {
             20 -> strMeasure20
             else -> ""
         }
-=======
-
->>>>>>> Stashed changes
     }
 }

@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ViewFlipper
 import androidx.fragment.app.Fragment
-<<<<<<< Updated upstream
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -20,9 +19,6 @@ import com.example.semestral.models.Comida
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-=======
-import com.example.semestral.R
->>>>>>> Stashed changes
 
 class FragmentHome : Fragment() {
 

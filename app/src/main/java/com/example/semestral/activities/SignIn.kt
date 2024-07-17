@@ -1,5 +1,9 @@
 package com.example.semestral.activities
 
+
+
+
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -13,12 +17,9 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
-enum class ProviderType {
-    BASIC
-}
 
-@Suppress("DEPRECATION", "DEPRECATION")
 class SignIn : AppCompatActivity() {
+
 
     companion object {
         private const val RC_SIGN_IN = 9001
@@ -26,46 +27,36 @@ class SignIn : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var button: Button
-    private lateinit var buttonRegister: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
         auth = FirebaseAuth.getInstance()
-        button = findViewById(R.id.login)
-        buttonRegister = findViewById(R.id.register)
-
+         button= findViewById(R.id.login)
         val editText1 = findViewById<EditText>(R.id.editTextTextEmailAddress)
-        editText1.setHintTextColor(resources.getColor(R.color.grisClaro))
 
+        editText1.setHintTextColor(resources.getColor(R.color.grisClaro)) // Cambia el color del hint si es necesario
         val editText2 = findViewById<EditText>(R.id.editTextTextPassword)
+
         editText2.setHintTextColor(resources.getColor(R.color.grisClaro))
 
-        buttonRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
+        val currentUser = auth.currentUser
+
+        button.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
-
-        button.setOnClickListener {
-            val email = editText1.text.toString()
-            val password = editText2.text.toString()
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
-                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
-            }
+        if (currentUser != null) {
+            // The user is already signed in, navigate to MainActivity
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // finish the current activity to prevent the user from coming back to the SignInActivity using the back button
         }
+
+
 
         val signInButton = findViewById<Button>(R.id.signInButton)
         signInButton.setOnClickListener {
@@ -113,3 +104,4 @@ class SignIn : AppCompatActivity() {
             }
     }
 }
+
