@@ -4,12 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.semestral.R
-<<<<<<< Updated upstream
-=======
 import com.example.semestral.interfaces.ComidaAPI
 import com.example.semestral.conexion.RetrofitClient
 import com.example.semestral.fragments.FragmentCategoriasList
->>>>>>> Stashed changes
 import com.example.semestral.fragments.FragmentHome
 import com.example.semestral.fragments.ProfileFragment
 import com.example.semestral.fragments.RecetaVista
@@ -27,30 +24,26 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    replaceFragment(FragmentCategoriasList())
+                    replaceFragment(FragmentHome())
                     true
                 }
                 R.id.nav_search -> {
-<<<<<<< Updated upstream
-                    replaceFragment(RecetaVista())
+                    replaceFragment(FragmentCategoriasList())
                     true
                 }
                 R.id.nav_profile -> {
                     replaceFragment(ProfileFragment())
-=======
                     replaceFragment(FragmentCategoriasList())
                     true
                 }
                 R.id.nav_profile -> {
                     replaceFragment(FragmentCategoriasList())
->>>>>>> Stashed changes
                     true
                 }
                 else -> false
             }
         }
 
-<<<<<<< Updated upstream
         // Manejar el caso cuando se vuelve desde NuevoNombreActivity con un nuevo nombre
         val newName = intent.getStringExtra("newName")
         val navigateToProfile = intent.getBooleanExtra("navigateToProfile", false)
@@ -67,10 +60,8 @@ class MainActivity : AppCompatActivity() {
             // Set default fragment on start
             replaceFragment(FragmentHome())
         }
-=======
         // Set default fragment on start
         replaceFragment(FragmentCategoriasList())
->>>>>>> Stashed changes
     }
 
     private fun replaceFragment(fragment: Fragment) {
