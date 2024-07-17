@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.semestral.R
+import com.example.semestral.activities.CambiarContrasenaActivity
 import com.example.semestral.activities.NuevoNombreActivity
 import com.example.semestral.activities.SignIn
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -26,7 +27,7 @@ class ProfileFragment : Fragment() {
     private lateinit var imageButton: ImageButton
     private lateinit var button: Button
     private lateinit var nameTextView: TextView
-
+    private lateinit var textViewCambiar: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +48,7 @@ class ProfileFragment : Fragment() {
         nameTextView = view.findViewById(R.id.name)
         imageButton = view.findViewById(R.id.imageButton)
         button = view.findViewById(R.id.button)
-
+        textViewCambiar= view.findViewById(R.id.textViewCambiar)
         // Obtener el usuario actual
         val auth = Firebase.auth
         val user = auth.currentUser
@@ -66,6 +67,14 @@ class ProfileFragment : Fragment() {
         signOutButton.setOnClickListener {
             signOutAndStartSignInActivity()
         }
+
+        // En el método onCreateView() o donde configures tu fragmento
+
+        textViewCambiar.setOnClickListener {
+            val intent = Intent(activity, CambiarContrasenaActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // Configurar el botón de imageButton
         imageButton.setOnClickListener {

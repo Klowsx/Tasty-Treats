@@ -131,7 +131,7 @@
                     android:layout_marginStart="4dp"
                     android:background="@drawable/buttonflipper_arrow_left"
                     android:onClick="onPreviousButtonClick"
-                    android:text="←"
+                    android:text="---"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -144,7 +144,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/buttonflipper_arrow_lright"
                     android:onClick="onNextButtonClick"
-
+                    android:text="---"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
