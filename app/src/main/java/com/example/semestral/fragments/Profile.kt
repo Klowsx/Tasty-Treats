@@ -43,12 +43,9 @@ class ProfileFragment : Fragment() {
         val auth = Firebase.auth
         val user = auth.currentUser
 
-
-
-
         if (user != null) {
-            val userName = user.displayName
-            textView.text = "$userName"
+            val userName = user.displayName ?: user.email
+            textView.text = userName
         }
 
         val signOutButton = view.findViewById<Button>(R.id.logout_button)
@@ -58,8 +55,6 @@ class ProfileFragment : Fragment() {
 
         return view
     }
-
-
 
     private fun signOutAndStartSignInActivity() {
         mAuth.signOut()
