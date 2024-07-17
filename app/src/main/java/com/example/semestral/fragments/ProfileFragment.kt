@@ -9,9 +9,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-
 import com.example.semestral.R
+import com.example.semestral.activities.NuevoNombreActivity
 import com.example.semestral.activities.SignIn
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -54,7 +53,10 @@ class ProfileFragment : Fragment() {
         val user = auth.currentUser
 
         // Actualizar el nombre en el TextView si el usuario está autenticado
-        if (user != null) {
+        val newName = arguments?.getString("newName")
+        if (newName != null) {
+            nameTextView.text = newName
+        } else if (user != null) {
             val userName = user.displayName ?: getUserNameFromEmail(user.email)
             nameTextView.text = userName
         }
@@ -67,17 +69,17 @@ class ProfileFragment : Fragment() {
 
         // Configurar el botón de imageButton
         imageButton.setOnClickListener {
-            val nuevoNombreFragment = NuevoNombre()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, nuevoNombreFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            val intent = Intent(activity, NuevoNombreActivity::class.java)
+            startActivity(intent)
         }
 
         // Configurar el botón button
         button.setOnClickListener {
             imageButton.visibility = View.VISIBLE
         }
+
+        // Ocultar el ImageButton al cargar el fragmento
+        imageButton.visibility = View.GONE
 
         return view
     }

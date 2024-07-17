@@ -1,4 +1,3 @@
-//Madelaine Arosemena, ALvaro Frago, Osiris Mateo, Javier Hernandez
 package com.example.semestral.activities
 
 import android.os.Bundle
@@ -10,7 +9,7 @@ import com.example.semestral.fragments.ProfileFragment
 import com.example.semestral.fragments.RecetaVista
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationView: BottomNavigationView
 
@@ -37,8 +36,22 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
-        // Set default fragment on start
-        replaceFragment(FragmentHome())
+        // Manejar el caso cuando se vuelve desde NuevoNombreActivity con un nuevo nombre
+        val newName = intent.getStringExtra("newName")
+        val navigateToProfile = intent.getBooleanExtra("navigateToProfile", false)
+
+        if (navigateToProfile && newName != null) {
+            val profileFragment = ProfileFragment().apply {
+                arguments = Bundle().apply {
+                    putString("newName", newName)
+                }
+            }
+            replaceFragment(profileFragment)
+            bottomNavigationView.selectedItemId = R.id.nav_profile // Seleccionar el ítem de perfil
+        } else {
+            // Set default fragment on start
+            replaceFragment(FragmentHome())
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {

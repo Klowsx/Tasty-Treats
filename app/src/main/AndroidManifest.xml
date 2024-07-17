@@ -34,6 +34,7 @@
         <activity
             android:name=".activities.SignIn"
             android:exported="true" />
+        <activity android:name="com.example.semestral.activities.NuevoNombreActivity" />
 
 
     </application>

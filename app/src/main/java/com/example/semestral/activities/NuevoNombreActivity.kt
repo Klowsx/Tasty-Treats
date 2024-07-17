@@ -1,53 +1,39 @@
-package com.example.semestral.fragments
+package com.example.semestral.activities
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import com.example.semestral.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class NuevoNombre: Fragment() {
+class NuevoNombreActivity : AppCompatActivity() {
 
     private lateinit var editTextName: EditText
     private lateinit var buttonSave: Button
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_nuevo_nombre, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_nuevo_nombre)
 
-        editTextName = view.findViewById(R.id.editTextName)
-        buttonSave = view.findViewById(R.id.buttonSave)
+        editTextName = findViewById(R.id.editTextName)
+        buttonSave = findViewById(R.id.buttonSave)
 
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().reference
 
         buttonSave.setOnClickListener {
-            buttonSave.setOnClickListener {
-                val newName = editTextName.text.toString().trim()
-                if (newName.isNotEmpty()) {
-                    updateName(newName)
-
-                }
-                navigateToProfile()
-
+            val newName = editTextName.text.toString().trim()
+            if (newName.isNotEmpty()) {
+                updateName(newName)
             }
-
         }
-
-        return view
     }
 
     private fun updateName(newName: String) {
@@ -65,8 +51,13 @@ class NuevoNombre: Fragment() {
                         databaseReference.child("users").child(it.uid).child("name").setValue(newName)
                             .addOnCompleteListener { dbTask ->
                                 if (dbTask.isSuccessful) {
-                                    // No es necesario notificar al ProfileFragment aquí
-                                    // porque ya se hace al navegar de regreso
+                                    // Iniciar MainActivity con el nuevo nombre
+                                    val intent = Intent(this, MainActivity::class.java)
+                                    intent.putExtra("newName", newName)
+                                    intent.putExtra("navigateToProfile", true)
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    startActivity(intent)
+                                    finish()
                                 } else {
                                     // Manejar error al actualizar en Firebase Database
                                     // Por ejemplo, mostrar un mensaje al usuario
@@ -76,16 +67,13 @@ class NuevoNombre: Fragment() {
                         // Manejar error al actualizar en Firebase Auth
                         // Por ejemplo, mostrar un mensaje al usuario
                     }
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("newName", newName)
+                    intent.putExtra("navigateToProfile", true)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
                 }
         }
     }
-    private fun navigateToProfile() {
-        val nuevoNombreFragment = ProfileFragment()
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, nuevoNombreFragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
-
 }
