@@ -74,7 +74,7 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/logout_button"
-                        android:text="cerrar sesión"
+                        android:text="Log out"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -316,7 +316,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_weight="1"
-                                android:text="Recetas guardadas"
+                                android:text="Saved Recipes"
                                 android:textColor="#182693"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -355,7 +355,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Favoritos"
+                                android:text="Favorites"
                                 android:textColor="#182693"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -392,7 +392,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Recetas subidas"
+                                android:text=" Recipes Uploaded"
                                 android:textColor="#182693"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
@@ -419,7 +419,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@drawable/profile_button"
-                android:text="Editar Perfil"
+                android:text="Edit Profile"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />

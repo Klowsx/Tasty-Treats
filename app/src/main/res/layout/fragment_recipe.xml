@@ -48,24 +48,10 @@
                 android:id="@+id/receta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Categories"
+                android:text="Recipes"
                 android:textColor="#A0522D"
                 android:textSize="25sp"
                 android:textStyle="bold|italic" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <SearchView
-                android:id="@+id/search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_search_view"
-                android:iconifiedByDefault="false"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:textColor="@android:color/black"/>
 
             <Space
                 android:layout_width="match_parent"

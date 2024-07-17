@@ -38,7 +38,7 @@ class FragmentCategoriasList : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         searchView = view.findViewById(R.id.search)
         backButton = view.findViewById(R.id.back_button)
-        textViewCategorias = view.findViewById(R.id.categorias)
+        textViewCategorias = view.findViewById(R.id.receta)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
 
