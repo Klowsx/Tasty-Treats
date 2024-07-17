@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,8 +23,6 @@ import kotlinx.coroutines.launch
 class FragmentCategoriasList : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
-    private lateinit var comidasAdapter: ComidaRecyclerViewAdapter
     private lateinit var searchView: SearchView
     private lateinit var backButton: ImageButton
     private lateinit var textViewCategorias: TextView
@@ -49,7 +48,6 @@ class FragmentCategoriasList : Fragment() {
 
         fetchCategorias()
 
-        // Listener para búsqueda en tiempo real
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -70,12 +68,11 @@ class FragmentCategoriasList : Fragment() {
         return view
     }
 
-
     private fun performSearch(query: String) {
-        searchJob?.cancel()  // Cancelar la búsqueda anterior si existe
+        searchJob?.cancel()
 
         searchJob = lifecycleScope.launch {
-            delay(500)  // Añadir un pequeño retardo para evitar múltiples llamadas rápidas
+            delay(500)
             try {
                 val response = RetrofitClient.api.searchRecipes(query)
                 comidas = response.meals ?: listOf()
@@ -92,32 +89,44 @@ class FragmentCategoriasList : Fragment() {
 
     private fun updateRecyclerView(items: List<Any>) {
         if (items.isNotEmpty() && items.first() is Categoria) {
-            recyclerView.adapter = RecyclerViewAdapter(items as List<Categoria>)
+            recyclerView.adapter = CategoriaRecyclerViewAdapter(items as List<Categoria>)
             textViewCategorias.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
         } else if (items.isNotEmpty() && items.first() is Comida) {
-            recyclerView.adapter = ComidaRecyclerViewAdapter(items as List<Comida>)
+            recyclerView.adapter = ComidaRecyclerViewAdapter(items as List<Comida>) { comida ->
+                navigateToRecetaVista(comida.idMeal)
+            }
             textViewCategorias.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
         } else {
-            // Caso donde items está vacío o de tipo desconocido (debería manejarse adecuadamente)
             textViewCategorias.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
         }
     }
 
+    private fun navigateToRecetaVista(idMeal: String) {
+        val recetaVistaFragment = RecetaVista().apply {
+            arguments = Bundle().apply {
+                putString("idMeal", idMeal)
+            }
+        }
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.fragment_container, recetaVistaFragment)
+            addToBackStack(null)
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            commit()
+        }
+    }
 
     private fun fetchCategorias() {
         lifecycleScope.launch {
             try {
                 val response = RetrofitClient.api.obtenerCategorias()
                 categorias = response.categories
-                recyclerViewAdapter = RecyclerViewAdapter(categorias)
-                recyclerView.adapter = recyclerViewAdapter
+                recyclerView.adapter = CategoriaRecyclerViewAdapter(categorias)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
-
 }

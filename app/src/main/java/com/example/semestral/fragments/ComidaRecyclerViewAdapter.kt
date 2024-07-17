@@ -10,8 +10,12 @@ import com.bumptech.glide.Glide
 import com.example.semestral.R
 import com.example.semestral.models.Comida
 
-class ComidaRecyclerViewAdapter(private val comidas: List<Comida>) :
-    RecyclerView.Adapter<ComidaRecyclerViewAdapter.ComidaViewHolder>() {
+
+
+class ComidaRecyclerViewAdapter(
+    private val comidas: List<Comida>,
+    private val onItemClick: (Comida) -> Unit
+) : RecyclerView.Adapter<ComidaRecyclerViewAdapter.ComidaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComidaViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_comida, parent, false)
@@ -20,7 +24,7 @@ class ComidaRecyclerViewAdapter(private val comidas: List<Comida>) :
 
     override fun onBindViewHolder(holder: ComidaViewHolder, position: Int) {
         val comida = comidas[position]
-        holder.bind(comida)
+        holder.bind(comida, onItemClick)
     }
 
     override fun getItemCount(): Int {
@@ -32,15 +36,13 @@ class ComidaRecyclerViewAdapter(private val comidas: List<Comida>) :
         private val textViewOrigen: TextView = itemView.findViewById(R.id.textViewOrigen)
         private val imageViewThumbnail: ImageView = itemView.findViewById(R.id.imageViewThumbnail)
 
-
-        fun bind(comida: Comida) {
+        fun bind(comida: Comida, onItemClick: (Comida) -> Unit) {
             itemView.apply {
-                // Asignar datos a los elementos de la tarjeta
                 textViewNombre.text = comida.strMeal
                 textViewOrigen.text = "Origen: ${comida.strArea}"
                 Glide.with(itemView.context).load(comida.strMealThumb).into(imageViewThumbnail)
+                setOnClickListener { onItemClick(comida) }
             }
         }
-
     }
 }

@@ -10,8 +10,8 @@ import com.example.semestral.R
 import com.example.semestral.models.Categoria
 import com.squareup.picasso.Picasso
 
-class RecyclerViewAdapter(private val categorias: List<Categoria>) :
-    RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class CategoriaRecyclerViewAdapter(private val categorias: List<Categoria>) :
+    RecyclerView.Adapter<CategoriaRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imagenCategoria: ImageView = view.findViewById(R.id.imagenCategoria)
