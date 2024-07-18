@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,7 @@ import com.example.semestral.R
 class RecetasGuardadasFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: RecetasGuardadasAdapter
+    private lateinit var adapter: RecetaAdapter
     private lateinit var  textViewNoSave: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +27,7 @@ class RecetasGuardadasFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.recyclerViewRecetas)
-        adapter = RecetasGuardadasAdapter(requireContext())
+        adapter = RecetaAdapter(requireContext())
         textViewNoSave= view.findViewById(R.id.tvNoRecetas)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
