@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -24,7 +23,6 @@ class FragmentCategoriasList : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
-    private lateinit var backButton: ImageButton
     private lateinit var textViewCategorias: TextView
     private var categorias: List<Categoria> = listOf()
     private var comidas: List<Comida> = listOf()
@@ -37,14 +35,9 @@ class FragmentCategoriasList : Fragment() {
         val view = inflater.inflate(R.layout.fragment_categorias_list, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
         searchView = view.findViewById(R.id.search)
-        backButton = view.findViewById(R.id.back_button)
         textViewCategorias = view.findViewById(R.id.receta)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
-
-        backButton.setOnClickListener {
-            activity?.onBackPressed()
-        }
 
         fetchCategorias()
 
