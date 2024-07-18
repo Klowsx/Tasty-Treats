@@ -98,7 +98,6 @@ class RecetaVista : Fragment() {
         }
     }
 
-    ///////////////
 private fun toggleSaveRecipe(idMeal: String) {
     val sharedPreferences = requireActivity().getSharedPreferences("com.example.semestral.activities.RecetasGuardadas", Context.MODE_PRIVATE)
     val editor = sharedPreferences.edit()
