@@ -1,3 +1,7 @@
+/*Madelaine Arosemena 8-1004-178
+* Javier Hernandez 8-1001-178
+* Alvaro Frago 8-993-484
+* Osiris Mateo 20-70-7416*/
 package com.example.semestral.activities
 
 import android.os.Bundle
