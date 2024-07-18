@@ -44,6 +44,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="0dp"
+                            android:layout_height="362dp"
+
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/circles"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="MissingConstraints" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <ImageView
@@ -98,19 +109,6 @@
                         app:layout_constraintStart_toEndOf="@id/name"
                         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
-                    <ImageView
-                        android:id="@+id/imageView7"
-                        android:layout_width="0dp"
-                        android:layout_height="362dp"
-                        android:layout_marginBottom="8dp"
-
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/circles"
-                        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                     <LinearLayout
                         android:id="@+id/linearLayout2"
                         android:layout_width="match_parent"
@@ -164,7 +162,8 @@
                                         android:id="@+id/imageViewSaved"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
-                                        android:src="@drawable/guardado"
+
+                                        android:background="@drawable/guardado"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         android:contentDescription="Boton Guarddados"
