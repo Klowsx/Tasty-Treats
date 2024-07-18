@@ -1,7 +1,5 @@
 package com.example.semestral.fragments
 
-
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -128,6 +126,11 @@ class FragmentHome : Fragment() {
                     titleIngrediente.text = categoria.strCategory
                     Glide.with(requireContext()).load(categoria.strCategoryThumb).into(imgIngrediente)
 
+                    cardView.setOnClickListener {
+                        Log.d("FragmentHome", "Card de categoría clickeada: ${categoria.strCategory}")
+                        navigateToRecetasFiltradas(categoria.strCategory)
+                    }
+
                     viewFlipper.addView(cardView)
                 }
 
@@ -139,6 +142,18 @@ class FragmentHome : Fragment() {
             } catch (e: Exception) {
                 Log.e("FragmentHome", "Error al obtener categorías: ${e.message}")
             }
+        }
+    }
+
+    private fun navigateToRecetasFiltradas(categoria: String) {
+        val fragmentRecetasFiltradas = FragmentRecetasFiltradas().apply {
+            arguments = Bundle().apply {
+                putString("categoria", categoria)
+            }
+        }
+        parentFragmentManager.commit {
+            replace(R.id.fragment_container, fragmentRecetasFiltradas)
+            addToBackStack(null)
         }
     }
 }

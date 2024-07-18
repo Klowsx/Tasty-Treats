@@ -32,8 +32,11 @@ class FragmentRecetasFiltradas : Fragment() {
         backButton = view.findViewById(R.id.back_button)
         tituloTextView = view.findViewById(R.id.titulo)
 
+        val categoria = arguments?.getString("categoria") ?: ""
+        tituloTextView.text = categoria
+
         recyclerView.layoutManager = GridLayoutManager(context, 2)
-        fetchRecetasPorCategoria(arguments?.getString("categoria") ?: "")
+        fetchRecetasPorCategoria(categoria)
 
         backButton.setOnClickListener {
             activity?.onBackPressed()
