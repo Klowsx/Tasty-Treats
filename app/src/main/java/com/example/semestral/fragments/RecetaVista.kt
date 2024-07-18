@@ -1,16 +1,19 @@
 package com.example.semestral.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.OptIn
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.media3.common.util.Log
+import androidx.media3.common.util.UnstableApi
 import com.bumptech.glide.Glide
 import com.example.semestral.R
 import com.example.semestral.conexion.RetrofitClient
@@ -66,14 +69,15 @@ class RecetaVista : Fragment() {
         }
     }
 
-    private fun obtenerDetallesComida(idMeal: String) {
+    @SuppressLint("Range")
+    @OptIn(UnstableApi::class) private fun obtenerDetallesComida(idMeal: String) {
         lifecycleScope.launch {
             try {
                 val comidaResponse = withContext(Dispatchers.IO) {
                     RetrofitClient.api.obtenerComidaPorId(idMeal)
                 }
                 comidaResponse.meals?.firstOrNull()?.let { comida ->
-                    Log.d("RecetaVista", "Detalles de la comida: ${comida.strMeal}")
+                    Log.d("com.example.semestral.fragments.RecetaVista", "Detalles de la comida: ${comida.strMeal}")
 
                     // Mostrar detalles en la UI
                     Glide.with(requireContext()).load(comida.strMealThumb).into(imgDetalles)
@@ -91,32 +95,32 @@ class RecetaVista : Fragment() {
                     // Verificar si la receta está guardada
                     checkIfRecipeIsSaved(comida.idMeal)
 
-                } ?: Log.d("RecetaVista", "La comida no se encontró.")
+                } ?: Log.d("com.example.semestral.fragments.RecetaVista", "La comida no se encontró.")
             } catch (e: Exception) {
-                Log.e("RecetaVista", "Error en la llamada: ${e.message}")
+                Log.e("com.example.semestral.fragments.RecetaVista", "Error en la llamada: ${e.message}")
             }
         }
     }
 
-private fun toggleSaveRecipe(idMeal: String) {
-    val sharedPreferences = requireActivity().getSharedPreferences("com.example.semestral.activities.RecetasGuardadas", Context.MODE_PRIVATE)
-    val editor = sharedPreferences.edit()
-    val savedRecipes = sharedPreferences.getStringSet("recetas", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+    private fun toggleSaveRecipe(idMeal: String) {
+        val sharedPreferences = requireActivity().getSharedPreferences("com.example.semestral.activities.RecetasGuardadas", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val savedRecipes = sharedPreferences.getStringSet("recetas", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
 
-    if (savedRecipes.contains(idMeal)) {
-        savedRecipes.remove(idMeal)
-        savebutton.setImageResource(R.drawable.ic_save_outline)
-    } else {
-        savedRecipes.add(idMeal)
-        savebutton.setImageResource(R.drawable.ic_save_fill)
+        if (savedRecipes.contains(idMeal)) {
+            savedRecipes.remove(idMeal)
+            savebutton.setImageResource(R.drawable.ic_save_outline)
+        } else {
+            savedRecipes.add(idMeal)
+            savebutton.setImageResource(R.drawable.ic_save_fill)
+        }
+
+        editor.putStringSet("recetas", savedRecipes)
+        editor.apply()
+
+        // Volver al fragmento de recetas guardadas después de guardar/eliminar
+        requireActivity().supportFragmentManager.popBackStack()
     }
-
-    editor.putStringSet("recetas", savedRecipes)
-    editor.apply()
-
-    // Volver al fragmento de recetas guardadas después de guardar/eliminar
-    requireActivity().supportFragmentManager.popBackStack()
-}
 
 
     private fun checkIfRecipeIsSaved(idMeal: String) {

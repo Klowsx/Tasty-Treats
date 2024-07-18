@@ -63,7 +63,7 @@ class FragmentHome : Fragment() {
                 parentFragmentManager.commit {
                     replace(R.id.fragment_container, recetaVistaFragment)
                     addToBackStack(null)
-                    Log.d("FragmentHome", "Reemplazando fragmento por com.example.semestral.fragments.RecetaVista")
+                    Log.d("FragmentHome", "Reemplazando fragmento por com.example.semestral.fragments.com.example.semestral.fragments.RecetaVista")
                 }
             }
         }

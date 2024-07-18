@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.semestral.R
 
-class RecetasGuardadasFragment : Fragment() {
+class RecetasGuardadasFragment : Fragment(), RecetaAdapter.OnItemClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RecetaAdapter
-    private lateinit var  textViewNoSave: TextView
+    private lateinit var textViewNoSave: TextView
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,8 +28,8 @@ class RecetasGuardadasFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.recyclerViewRecetas)
-        adapter = RecetaAdapter(requireContext())
-        textViewNoSave= view.findViewById(R.id.tvNoRecetas)
+        adapter = RecetaAdapter(requireContext(), requireActivity().supportFragmentManager)
+        textViewNoSave = view.findViewById(R.id.tvNoRecetas)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -44,14 +45,30 @@ class RecetasGuardadasFragment : Fragment() {
         val savedRecipes = sharedPreferences.getStringSet("recetas", mutableSetOf()) ?: mutableSetOf()
 
         adapter.submitList(savedRecipes.toList())
+
+        // Mostrar texto si no hay recetas guardadas
+        showNoSavedText(savedRecipes.isEmpty())
     }
-    private fun NoSaveText(){
-        if (recyclerView.adapter?.itemCount == 0) {
-            // Muestra el TextView si el RecyclerView está vacío
+
+    private fun showNoSavedText(noSaved: Boolean) {
+        if (noSaved) {
             textViewNoSave.visibility = View.VISIBLE
         } else {
-            // Oculta el TextView si el RecyclerView tiene elementos
             textViewNoSave.visibility = View.GONE
         }
+    }
+
+    // Implementación del método onItemClick de la interfaz OnItemClickListener
+   override fun onItemClick(idMeal: String) {
+        val fragment = RecetaVista()
+        val args = Bundle()
+        args.putString("idMeal", idMeal)
+        fragment.arguments = args
+
+        // Reemplazar el fragmento actual con RecetaVistaFragment
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

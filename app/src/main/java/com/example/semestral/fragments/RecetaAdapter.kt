@@ -1,12 +1,14 @@
 package com.example.semestral.fragments
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +20,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class RecetaAdapter(private val context: Context) :
-    ListAdapter<String, RecetaAdapter.RecetaViewHolder>(RecetasDiffCallback()) {
+class RecetaAdapter(
+    private val context: Context,
+    private val fragmentManager: FragmentManager
+) : ListAdapter<String, RecetaAdapter.RecetaViewHolder>(RecetasDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecetaViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_recetag, parent, false)
+        val view =
+            LayoutInflater.from(context).inflate(R.layout.item_recetag, parent, false)
         return RecetaViewHolder(view)
     }
 
@@ -34,7 +39,8 @@ class RecetaAdapter(private val context: Context) :
     inner class RecetaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewReceta: TextView = itemView.findViewById(R.id.Nombrereceta)
         private val imageViewReceta: ImageView = itemView.findViewById(R.id.Recetaimg)
-        private val textViewDescripcion: TextView = itemView.findViewById(R.id.recetadescripcion)
+        private val textViewDescripcion: TextView =
+            itemView.findViewById(R.id.recetadescripcion)
 
         fun bind(idMeal: String) {
             // Realizar la solicitud al API usando Retrofit dentro de un CoroutineScope
@@ -42,20 +48,46 @@ class RecetaAdapter(private val context: Context) :
                 try {
                     val comidaResponse = RetrofitClient.api.obtenerComidaPorId(idMeal)
                     comidaResponse.meals?.firstOrNull()?.let { comida ->
-                        Log.d("com.example.semestral.fragments.RecetaAdapter", "Detalles de la comida: ${comida.strMeal}")
+                        Log.d(
+                            "com.example.semestral.fragments.RecetaAdapter",
+                            "Detalles de la comida: ${comida.strMeal}"
+                        )
 
                         // Actualizar la UI en el hilo principal
                         withContext(Dispatchers.Main) {
-                            Glide.with(itemView).load(comida.strMealThumb).into(imageViewReceta)
+                            Glide.with(itemView).load(comida.strMealThumb)
+                                .into(imageViewReceta)
                             textViewReceta.text = comida.strMeal
                             textViewDescripcion.text = comida.strInstructions
+
+                            // Escuchar el clic en el elemento
+                            itemView.setOnClickListener {
+                                // Iniciar el fragmento com.example.semestral.fragments.RecetaVista con el idMeal seleccionado
+                                val fragment = RecetaVista()
+                                val args = Bundle()
+                                args.putString("idMeal", idMeal)
+                                fragment.arguments = args
+
+                                // Iniciar la transacción del fragmento
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_container, fragment)
+                                    .addToBackStack(null)
+                                    .commit()
+                            }
                         }
-                    } ?: Log.d("com.example.semestral.fragments.RecetaAdapter", "La comida no se encontró.")
+                    } ?: Log.d(
+                        "com.example.semestral.fragments.RecetaAdapter",
+                        "La comida no se encontró."
+                    )
                 } catch (e: Exception) {
                     Log.e("com.example.semestral.fragments.RecetaAdapter", "Error en la llamada: ${e.message}")
                 }
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(idMeal: String)
     }
 }
 
