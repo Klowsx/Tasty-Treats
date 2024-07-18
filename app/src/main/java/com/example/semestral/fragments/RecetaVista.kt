@@ -119,7 +119,7 @@ class RecetaVista : Fragment() {
         editor.apply()
 
         // Volver al fragmento de recetas guardadas después de guardar/eliminar
-        requireActivity().supportFragmentManager.popBackStack()
+
     }
 
 

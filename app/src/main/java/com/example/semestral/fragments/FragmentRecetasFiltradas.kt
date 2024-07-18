@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.semestral.R
 import com.example.semestral.conexion.RetrofitClient
+import com.example.semestral.fragments.adapters.RecetaRecyclerViewAdapter
 import com.example.semestral.models.Comida
 import kotlinx.coroutines.launch
 

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.semestral.R
 import com.example.semestral.conexion.RetrofitClient
+import com.example.semestral.fragments.adapters.CategoriaRecyclerViewAdapter
+import com.example.semestral.fragments.adapters.ComidaRecyclerViewAdapter
 import com.example.semestral.models.Categoria
 import com.example.semestral.models.Comida
 import kotlinx.coroutines.Job

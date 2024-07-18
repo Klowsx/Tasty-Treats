@@ -1,4 +1,4 @@
-package com.example.semestral.fragments
+package com.example.semestral.fragments.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
