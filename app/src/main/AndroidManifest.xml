@@ -15,9 +15,7 @@
         android:theme="@style/Theme.Semestral"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.RecetasGuardadas"
-            android:exported="false" />
+
         <activity
             android:name=".activities.CambiarContrasenaActivity"
             android:exported="false" />
@@ -26,16 +24,20 @@
             android:exported="true">
 
             <!-- Este intent-filter marca MainActivity como la actividad principal -->
+
+        </activity>
+        <activity android:name=".activities.RegisterActivity" />
+        <activity
+            android:name=".activities.SignIn"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".activities.RegisterActivity" />
-        <activity
-            android:name=".activities.SignIn"
-            android:exported="true" />
+
         <activity android:name=".activities.NuevoNombreActivity" />
     </application>
 
