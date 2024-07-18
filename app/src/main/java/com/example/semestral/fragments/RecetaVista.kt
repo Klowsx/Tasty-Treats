@@ -82,8 +82,8 @@ class RecetaVista : Fragment() {
                     // Mostrar detalles en la UI
                     Glide.with(requireContext()).load(comida.strMealThumb).into(imgDetalles)
                     titleComida.text = comida.strMeal
-                    titleCategoria.text = comida.strCategory
-                    titleOrigen.text = comida.strArea
+                    titleCategoria.text = ("Category: ${comida.strCategory}")
+                    titleOrigen.text = ("Origin: ${comida.strArea}")
 
                     // Filtrar ingredientes y medidas no vacíos
                     val ingredientes = getIngredientesNoVacios(comida)

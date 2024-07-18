@@ -36,7 +36,9 @@
         android:layout_toRightOf="@id/back_button"
         android:text="Nombre"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/colorTitulos"
+        android:textStyle="bold|italic"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
