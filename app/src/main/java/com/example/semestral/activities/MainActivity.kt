@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.semestral.R
-import com.example.semestral.interfaces.ComidaAPI
-import com.example.semestral.conexion.RetrofitClient
 import com.example.semestral.fragments.FragmentCategoriasList
 import com.example.semestral.fragments.FragmentHome
 import com.example.semestral.fragments.ProfileFragment

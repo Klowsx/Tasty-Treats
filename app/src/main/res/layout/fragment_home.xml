@@ -41,62 +41,34 @@
             android:padding="20dp">
 
             <!-- CardView for first item -->
+
+            <!-- Section title -->
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="186dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp">
+                    android:layout_width="383dp"
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
+                        android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/login" />
-
-                    <TextView
-                        android:id="@+id/first_item_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/imageView2"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginBottom="33dp"
-                        android:text="Todas las recetas"
-                        android:textColor="@color/textomorado"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/first_item_subtitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="26dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="(43)"
-                        android:textColor="@color/grisClaro"
-                        android:textSize="14sp" />
+                        android:src="@drawable/banner1" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Section title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Ingredientes populares"
+                android:text="Popular Ingredients"
                 android:textColor="#A0522D"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -181,7 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="Receta aleatoria"
+                        android:text="Random Recipe"
                         android:textColor="@color/textomorado"
                         android:textSize="18sp"
                         android:textStyle="bold"
