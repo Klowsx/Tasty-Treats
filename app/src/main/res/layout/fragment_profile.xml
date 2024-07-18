@@ -160,13 +160,14 @@
                                     android:layout_margin="12dp"
                                     android:background="@drawable/circle_background">
 
-                                    <ImageView
+                                    <ImageButton
                                         android:id="@+id/imageViewSaved"
                                         android:layout_width="50dp"
-                                        android:layout_height="40dp"
+                                        android:layout_height="50dp"
                                         android:src="@drawable/guardado"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
+                                        android:contentDescription="Boton Guarddados"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>

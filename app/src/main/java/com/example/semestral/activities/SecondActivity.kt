@@ -1,10 +1,14 @@
 package com.example.semestral.activities
 
+
+
+
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.semestral.R
 import com.example.semestral.fragments.RecetaVista
+
 
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,7 @@
 package com.example.semestral.fragments
 
+
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -63,7 +65,7 @@ class FragmentHome : Fragment() {
                 parentFragmentManager.commit {
                     replace(R.id.fragment_container, recetaVistaFragment)
                     addToBackStack(null)
-                    Log.d("FragmentHome", "Reemplazando fragmento por RecetaVista")
+                    Log.d("FragmentHome", "Reemplazando fragmento por com.example.semestral.fragments.RecetaVista")
                 }
             }
         }

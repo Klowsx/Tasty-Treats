@@ -1,5 +1,6 @@
 package com.example.semestral.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class RecetaVista : Fragment() {
     lateinit var titleOrigen: TextView
     lateinit var listaIngredientes: TextView
     lateinit var listaPasos: TextView
+    lateinit var savebutton: ImageButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +45,7 @@ class RecetaVista : Fragment() {
         titleOrigen = view.findViewById(R.id.titleOrigen)
         listaIngredientes = view.findViewById(R.id.listaIngredientes)
         listaPasos = view.findViewById(R.id.listaPasos)
-
+        savebutton= view.findViewById(R.id.imageButtonSave)
         // Handle back button click
         view.findViewById<ImageButton>(R.id.back_button).setOnClickListener {
             activity?.onBackPressed()
@@ -55,6 +57,12 @@ class RecetaVista : Fragment() {
         // Obtener los detalles de la comida usando el ID
         idMeal?.let {
             obtenerDetallesComida(it)
+        }
+        savebutton.setOnClickListener {
+            idMeal?.let {
+                toggleSaveRecipe(it)
+                checkIfRecipeIsSaved(it)
+            }
         }
     }
 
@@ -80,6 +88,9 @@ class RecetaVista : Fragment() {
                     // Mostrar instrucciones de preparación
                     listaPasos.text = comida.strInstructions
 
+                    // Verificar si la receta está guardada
+                    checkIfRecipeIsSaved(comida.idMeal)
+
                 } ?: Log.d("RecetaVista", "La comida no se encontró.")
             } catch (e: Exception) {
                 Log.e("RecetaVista", "Error en la llamada: ${e.message}")
@@ -87,6 +98,38 @@ class RecetaVista : Fragment() {
         }
     }
 
+    ///////////////
+private fun toggleSaveRecipe(idMeal: String) {
+    val sharedPreferences = requireActivity().getSharedPreferences("com.example.semestral.activities.RecetasGuardadas", Context.MODE_PRIVATE)
+    val editor = sharedPreferences.edit()
+    val savedRecipes = sharedPreferences.getStringSet("recetas", mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+
+    if (savedRecipes.contains(idMeal)) {
+        savedRecipes.remove(idMeal)
+        savebutton.setImageResource(R.drawable.ic_save_outline)
+    } else {
+        savedRecipes.add(idMeal)
+        savebutton.setImageResource(R.drawable.ic_save_fill)
+    }
+
+    editor.putStringSet("recetas", savedRecipes)
+    editor.apply()
+
+    // Volver al fragmento de recetas guardadas después de guardar/eliminar
+    requireActivity().supportFragmentManager.popBackStack()
+}
+
+
+    private fun checkIfRecipeIsSaved(idMeal: String) {
+        val sharedPreferences = requireActivity().getSharedPreferences("com.example.semestral.activities.RecetasGuardadas", Context.MODE_PRIVATE)
+        val savedRecipes = sharedPreferences.getStringSet("recetas", mutableSetOf()) ?: mutableSetOf()
+
+        if (savedRecipes.contains(idMeal)) {
+            savebutton.setImageResource(R.drawable.ic_save_fill)
+        } else {
+            savebutton.setImageResource(R.drawable.ic_save_outline)
+        }
+    }
     // Función para obtener ingredientes no vacíos
     private fun getIngredientesNoVacios(comida: Comida): List<String> {
         val ingredientes = mutableListOf<String>()

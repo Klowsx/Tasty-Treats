@@ -1,5 +1,8 @@
 package com.example.semestral.fragments
 
+
+
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+
 class ProfileFragment : Fragment() {
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -28,6 +32,7 @@ class ProfileFragment : Fragment() {
     private lateinit var button: Button
     private lateinit var nameTextView: TextView
     private lateinit var textViewCambiar: TextView
+    private lateinit var buttonSave: ImageButton
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,10 +50,11 @@ class ProfileFragment : Fragment() {
         mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
 
         // Inicialización de vistas
+        buttonSave= view.findViewById(R.id.imageViewSaved)
         nameTextView = view.findViewById(R.id.name)
         imageButton = view.findViewById(R.id.imageButton)
         button = view.findViewById(R.id.button)
-        textViewCambiar= view.findViewById(R.id.textViewCambiar)
+        textViewCambiar= view.findViewById(com.example.semestral.R.id.textViewCambiar)
         // Obtener el usuario actual
         val auth = Firebase.auth
         val user = auth.currentUser
@@ -80,6 +86,14 @@ class ProfileFragment : Fragment() {
         imageButton.setOnClickListener {
             val intent = Intent(activity, NuevoNombreActivity::class.java)
             startActivity(intent)
+        }
+
+        buttonSave.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, RecetasGuardadasFragment())
+                .addToBackStack(null)  // Agrega este fragmento al back stack
+                .commit()
+
         }
 
         // Configurar el botón button
@@ -122,4 +136,5 @@ class ProfileFragment : Fragment() {
             requireActivity().finish()
         }
     }
+
 }
