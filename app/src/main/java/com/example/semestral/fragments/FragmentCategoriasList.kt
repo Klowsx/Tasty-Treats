@@ -65,6 +65,7 @@ class FragmentCategoriasList : Fragment() {
                 return true
             }
         })
+
         return view
     }
 
@@ -89,7 +90,9 @@ class FragmentCategoriasList : Fragment() {
 
     private fun updateRecyclerView(items: List<Any>) {
         if (items.isNotEmpty() && items.first() is Categoria) {
-            recyclerView.adapter = CategoriaRecyclerViewAdapter(items as List<Categoria>)
+            recyclerView.adapter = CategoriaRecyclerViewAdapter(items as List<Categoria>) { categoria ->
+                navigateToRecetasPorCategoria(categoria.strCategory)
+            }
             textViewCategorias.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
         } else if (items.isNotEmpty() && items.first() is Comida) {
@@ -118,12 +121,28 @@ class FragmentCategoriasList : Fragment() {
         }
     }
 
+    private fun navigateToRecetasPorCategoria(categoria: String) {
+        val fragmentRecetaFiltradas = FragmentRecetasFiltradas().apply {
+            arguments = Bundle().apply {
+                putString("categoria", categoria)
+            }
+        }
+        activity?.supportFragmentManager?.beginTransaction()?.apply {
+            replace(R.id.fragment_container, fragmentRecetaFiltradas)
+            addToBackStack(null)
+            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            commit()
+        }
+    }
+
     private fun fetchCategorias() {
         lifecycleScope.launch {
             try {
                 val response = RetrofitClient.api.obtenerCategorias()
                 categorias = response.categories
-                recyclerView.adapter = CategoriaRecyclerViewAdapter(categorias)
+                recyclerView.adapter = CategoriaRecyclerViewAdapter(categorias) { categoria ->
+                    navigateToRecetasPorCategoria(categoria.strCategory)
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
